@@ -6,7 +6,7 @@ function URLify_1(str: string): string {
 }
 
 function URLify_2(str: string, strLen: number): string {
-    let newStr = "";
+    let newStr: string = "";
 
     for (let i = 0; i < strLen; i++) {
         if (str.charAt(i) === " ") {

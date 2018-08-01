@@ -1,5 +1,5 @@
 function isUnique(str: string): boolean {
-    let map = new Set<string>();
+    let map: Set<string> = new Set<string>();
 
     for (let c of str) {
         if (!map.has(c)) map.add(c);
