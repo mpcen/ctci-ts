@@ -1,6 +1,6 @@
 interface INode<T> {
     data: T;
-    next: INode<T> | undefined;
+    next?: INode<T>;
 }
 
 class Node<T> {
