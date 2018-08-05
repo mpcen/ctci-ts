@@ -5,7 +5,7 @@ interface INode<T> {
 
 class Node<T> {
     public data: T;
-    public next: INode<T> | undefined;
+    public next?: INode<T>;
 
     public constructor(data: T, next?: INode<T>) {
         this.data = data;
@@ -38,9 +38,7 @@ function removeDupsWithBuffer<T>(ll: LinkedList<T>): LinkedList<T> | undefined {
     let currentNode: INode<T> | undefined = ll.head;
     let prevNode: INode<T> | undefined = undefined;
 
-    if (!currentNode) {
-        return undefined;
-    }
+    if (!currentNode) return undefined;
 
     while (currentNode) {
         if (!set.has(currentNode.data)) {
@@ -56,18 +54,61 @@ function removeDupsWithBuffer<T>(ll: LinkedList<T>): LinkedList<T> | undefined {
     return ll;
 }
 
-const ll = new LinkedList<string>();
-ll.addToTail("a");
-ll.addToTail("a");
-ll.addToTail("a");
-ll.addToTail("b");
-ll.addToTail("b");
-ll.addToTail("a");
-ll.addToTail("a");
-ll.addToTail("b");
+function removeDupsWithoutBuffer<T>(
+    ll: LinkedList<T>
+): LinkedList<T> | undefined {
+    let currentNode = ll.head;
+    let fast = ll.head;
+    let slow = ll.head;
 
-removeDupsWithBuffer<string>(ll);
+    if (!currentNode) return undefined;
 
-console.log(ll);
+    while (currentNode) {
+        fast = fast!.next;
+
+        while (fast) {
+            if (currentNode.data === fast.data) {
+                slow!.next = fast.next;
+            } else {
+                slow = fast;
+            }
+            fast = fast.next;
+        }
+        currentNode = currentNode.next;
+        fast = currentNode;
+        slow = currentNode;
+    }
+
+    return ll;
+}
+
+const ll1 = new LinkedList<string>();
+ll1.addToTail("a");
+ll1.addToTail("a");
+ll1.addToTail("a");
+ll1.addToTail("b");
+ll1.addToTail("c");
+ll1.addToTail("b");
+ll1.addToTail("a");
+ll1.addToTail("a");
+ll1.addToTail("b");
+
+removeDupsWithBuffer<string>(ll1);
+console.log(ll1);
+console.log("----");
+
+const ll2 = new LinkedList<string>();
+ll2.addToTail("a");
+ll2.addToTail("a");
+ll2.addToTail("a");
+ll2.addToTail("b");
+ll2.addToTail("b");
+ll2.addToTail("a");
+ll2.addToTail("c");
+ll2.addToTail("a");
+ll2.addToTail("b");
+removeDupsWithoutBuffer<string>(ll2);
+
+console.log(ll2);
 
 export {};
