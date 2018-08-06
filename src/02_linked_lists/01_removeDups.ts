@@ -7,9 +7,8 @@ class Node<T> {
     public data: T;
     public next?: INode<T>;
 
-    public constructor(data: T, next?: INode<T>) {
+    public constructor(data: T) {
         this.data = data;
-        this.next = next;
     }
 }
 
