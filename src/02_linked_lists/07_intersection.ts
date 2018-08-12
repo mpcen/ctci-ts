@@ -19,7 +19,10 @@ class LinkedList<T> {
         const node = new Node(data);
         let current = this.head;
 
-        if (!current) return undefined;
+        if (!current) {
+            this.head = node;
+            return;
+        }
 
         while (current.next) {
             current = current.next;
