@@ -17,6 +17,10 @@ class Stack<T> {
     public peek(): T | undefined {
         return this.data[this.size() - 1];
     }
+
+    public isEmpty(): boolean {
+        return this.size() === 0;
+    }
 }
 
 const stack = new Stack();
@@ -30,3 +34,5 @@ stack.push("b");
 stack.push("c");
 console.log(stack.peek());
 console.log(stack.size());
+
+export {};
