@@ -10,8 +10,7 @@ class Stack<T> {
     }
 
     public size(): number {
-        if (this.data.length > 0) return this.data.length;
-        return 0;
+        return this.data.length;
     }
 
     public peek(): T | undefined {
