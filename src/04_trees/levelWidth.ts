@@ -41,7 +41,8 @@ class TreeNode<T> implements ITreeNode<T> {
 function levelWidth<T>(treeNode: ITreeNode<T>): number[] {
     if (!treeNode) return [];
 
-    const queue: (ITreeNode<T> | string)[] = [treeNode, "end"];
+    const END_FLAG = "end";
+    const queue: (ITreeNode<T> | string)[] = [treeNode, END_FLAG];
     const levels: number[] = [1];
     let count = 0;
 
@@ -51,10 +52,10 @@ function levelWidth<T>(treeNode: ITreeNode<T>): number[] {
         if (queueItem instanceof TreeNode) {
             count += queueItem.children.length;
             queue.push(...queueItem.children);
-        } else if (queueItem === "end" && queue.length) {
+        } else if (queueItem === END_FLAG && queue.length) {
             levels.push(count);
             count = 0;
-            queue.push("end");
+            queue.push(END_FLAG);
         }
     }
 
