@@ -42,8 +42,9 @@ class LinkedList<T> {
     public getLast(): INode<T> | undefined {
         let currentNode: INode<T> | undefined = this.head;
 
-        while (currentNode) {
-            if (!currentNode.next) return currentNode;
+        if(!currentNode) return undefined;
+
+        while (currentNode.next) {
             currentNode = currentNode.next;
         }
 
