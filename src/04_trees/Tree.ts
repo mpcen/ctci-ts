@@ -40,6 +40,22 @@ function traverseBF<T>(
     }
 }
 
+function traverseDF<T>(
+    treeNode: ITreeNode<T>,
+    cb: (treeNode: ITreeNode<T>) => void
+) {
+    const stack = [treeNode];
+
+    while (stack.length) {
+        const treeNode = stack.shift();
+
+        if (treeNode) {
+            stack.unshift(...treeNode.children);
+            cb(treeNode);
+        }
+    }
+}
+
 const node20 = new TreeNode(20);
 node20.add(0);
 node20.add(40);
@@ -54,6 +70,12 @@ traverseBF(node20, node => {
 });
 
 traverseBF(node20, node => {
+    console.log(node.data);
+});
+
+console.log("--------");
+
+traverseDF(node20, node => {
     console.log(node.data);
 });
 
