@@ -70,3 +70,5 @@ treeNode.children[0].add(4);
 treeNode.children[2].add(5);
 
 console.log(levelWidth(treeNode));
+
+export {};
