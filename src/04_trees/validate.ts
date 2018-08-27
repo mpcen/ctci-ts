@@ -26,26 +26,35 @@ function insertNode<T>(bstNode: IBSTNode<T>, data: T): void {
     }
 }
 
-function findNode<T>(bstNode: IBSTNode<T>, value: T): BSTNode<T> | undefined {
-    if (bstNode.data === value) {
-        return bstNode;
-    } else if (value <= bstNode.data && bstNode.left) {
-        return findNode(bstNode.left, value);
-    } else if (value > bstNode.data && bstNode.right) {
-        return findNode(bstNode.right, value);
-    } else {
-        return undefined;
+function validate(
+    bstNode: IBSTNode<number>,
+    min: number | undefined = undefined,
+    max: number | undefined = undefined
+): boolean {
+    if (max !== undefined && bstNode.data > max) return false;
+    if (min !== undefined && bstNode.data < min) return false;
+    if (bstNode.left && !validate(bstNode.left, min, bstNode.data)) {
+        return false;
     }
+    if (bstNode.right && !validate(bstNode.right, bstNode.data, max)) {
+        return false;
+    }
+
+    return true;
 }
 
 const tree = new BSTNode(10);
-insertNode(tree, 5);
 insertNode(tree, 0);
-insertNode(tree, -5);
-insertNode(tree, 3);
-insertNode(tree, 15);
+insertNode(tree, -1);
+insertNode(tree, 4);
+insertNode(tree, 12);
+insertNode(tree, 11);
 insertNode(tree, 20);
+insertNode(tree, 17);
+insertNode(tree, 99);
 
-console.log(findNode(tree, -1));
+tree!.left!.left!.right = new BSTNode(15);
+
+console.log(validate(tree));
 
 export {};
