@@ -25,8 +25,8 @@ function validate(
     min: number | undefined = undefined,
     max: number | undefined = undefined
 ): boolean {
-    if (max !== undefined && bstNode.data > max) return false;
-    if (min !== undefined && bstNode.data < min) return false;
+    if (max && bstNode.data > max) return false;
+    if (min && bstNode.data < min) return false;
     if (bstNode.left && !validate(bstNode.left, min, bstNode.data)) {
         return false;
     }
