@@ -11,45 +11,6 @@ class Node {
     }
 }
 
-function getAncestorSuccessor(
-    currentNode: Node | undefined,
-    targetNode: Node | undefined,
-    ancestorSuccessorNode: Node | undefined = undefined
-): Node | undefined {
-    if (targetNode === currentNode) return ancestorSuccessorNode;
-
-    if (targetNode!.data <= currentNode!.data) {
-        return getAncestorSuccessor(currentNode!.left, targetNode, currentNode);
-    } else if (targetNode!.data > currentNode!.data) {
-        return getAncestorSuccessor(
-            currentNode!.right,
-            targetNode,
-            ancestorSuccessorNode
-        );
-    }
-
-    return undefined;
-}
-
-function successor(
-    currentNode: Node | undefined,
-    targetNode: Node | undefined
-): Node | undefined {
-    if (!currentNode || !targetNode) return undefined;
-
-    if (targetNode.right) {
-        targetNode = targetNode.right;
-
-        while (targetNode!.left) {
-            targetNode = targetNode!.left;
-        }
-
-        return targetNode;
-    } else {
-        return getAncestorSuccessor(currentNode, targetNode);
-    }
-}
-
 function BSTSuccessor(tree: Node | undefined, target: Node): Node | undefined {
     if (target.data > tree!.data) {
         tree = tree!.right;
@@ -87,15 +48,4 @@ function minTree(
 
 const bst = minTree([1, 2, 3, 4, 5, 6, 7]);
 console.log(BSTSuccessor(bst, bst!.left!.left!));
-
-// console.log(successor(node, node.left)!.data);
-
-const node = new Node(4);
-node.left = new Node(3);
-node.left.left = new Node(-2);
-node.left.left.right = new Node(2);
-node.right = new Node(9);
-node.right.left = new Node(6);
-node.right.left.left = new Node(5);
-
 export {};
