@@ -128,7 +128,7 @@ function FCA(
 
 // Successor: Write an algorithm to find the "next" node (i .e ., in-order successor )
 // of a given node in a binary search tree. You may assume that each node has a link to its parent.
-function successor(tree: Node | undefined, target: Node): Node | undefined {
+function BSTsuccessor(tree: Node | undefined, target: Node): Node | undefined {
     if (target.data > tree!.data) {
         tree = tree!.right;
         while (tree!.left) {
@@ -150,6 +150,6 @@ function successor(tree: Node | undefined, target: Node): Node | undefined {
 }
 
 const tree = minTree([1, 2, 3, 4, 5, 6, 7]);
-console.log(successor(tree, tree!.left!.left!));
+console.log(BSTsuccessor(tree, tree!.left!.left!));
 
 export {};
