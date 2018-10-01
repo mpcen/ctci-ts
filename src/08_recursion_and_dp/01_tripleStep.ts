@@ -1,8 +1,8 @@
-/*
-Triple Step: A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or 3
-steps at a time. Implement a method to count how many possible ways the child can run up the
-stairs
-*/
+// /*
+// Triple Step: A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or 3
+// steps at a time. Implement a method to count how many possible ways the child can run up the
+// stairs
+// */
 
 function tripleStep(n, cache = { 1: 1, 2: 2, 3: 4 }) {
     if (n <= 0) return 0;
@@ -18,4 +18,4 @@ function tripleStep(n, cache = { 1: 1, 2: 2, 3: 4 }) {
     return cache[n];
 }
 
-console.log(tripleStep(350));
+console.log(tripleStep(4));
