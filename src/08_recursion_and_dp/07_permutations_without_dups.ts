@@ -1,7 +1,7 @@
 // Permutations without Dups: Write a method to compute all permutations of a string of unique
 // characters
 
-function permutationsWithoutDups(strArr: string[], chosen: string[] = []) {
+function permutationsWithoutDups(strArr: string[], chosen: string[] = []): void {
     if(!strArr.length) {
         console.log(chosen);
     } else {
