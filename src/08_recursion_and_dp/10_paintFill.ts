@@ -11,10 +11,7 @@ enum Color {
     OMEGABLUE = 'OMEGABLUE'
 }
 
-interface IImagePoint {
-    y: number;
-    x: number;
-}
+interface IImagePoint { y: number; x: number; }
 
 function paintFill(
     image: Color[][],
@@ -22,11 +19,19 @@ function paintFill(
     newColor: Color,
     oldColor: Color = image[point.y][point.x]
 ): boolean {
-    if(point.y < 0 || point.y > image.length - 1 || point.x < 0 || point.x > image[0].length - 1) {
+    if(
+        point.y < 0 ||
+        point.y > image.length - 1 ||
+        point.x < 0 ||
+        point.x > image[0].length - 1
+    ) {
         return false;
     }
 
-    if(image[point.y][point.x] === newColor || image[point.y][point.x] !== oldColor) {
+    if(
+        image[point.y][point.x] === newColor ||
+        image[point.y][point.x] !== oldColor
+    ) {
         return false;
     }
 
